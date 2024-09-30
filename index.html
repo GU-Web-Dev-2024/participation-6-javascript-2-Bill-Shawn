@@ -83,7 +83,7 @@
                 messageElement.textContent = 'Correct. That is the number';
                 endGame()
             } else if (guessCount >= maxGuesses) {
-                messageElement.textContent = 'The correct number was ${randomNumber}.';
+                messageElement.textContent = `The correct number was ${randomNumber}.`;
                 endGame();
             } else if (guess < randomNumber) {
                 messageElement.textContent = 'Should be larger! Try again.';
