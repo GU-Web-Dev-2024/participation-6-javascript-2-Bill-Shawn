@@ -54,18 +54,57 @@
     </div>
 
     <script>
-        // JavaScript code goes here   
+        // JavaScript code goes here
+        let randomNumber = Math.floor(Math.random() * 10) + 1;
+        let guessCount = 0;
+        let maxGuesses = 3;
 
 
-        // Added a click listener to the button (will be covered more in zyBook 7.4), 
+        // Added a click listener to the button (will be covered more in zyBook 7.4),
         // for now just use the following which:
         // uses the document object and selects the element with a matching Id found in the DOM.
         // adds an event listener (for a click) of that selected element.
         // executes the code in the body of the anonymous function
         document.getElementById('guess-button').addEventListener('click', function () {
             //function body -- any code here will be executed when the registered event is triggered.
+            const guessInput = document.getElementById('guess-input');
+            const messageElement = document.getElementById('message');
+            const guess = Number(guessInput.value);
+
+            if (guess < 1 || guess > 10 || isNaN(guess))
+            {
+                messageElement.textContent = 'Please enter a valid number between 1 and 10.';
+                return;
+            }
+
+            guessCount++;
+            if (guess === randomNumber) {
+                messageElement.textContent = 'Correct. That is the number';
+                endGame()
+            } else if (guessCount >= maxGuesses) {
+                messageElement.textContent = 'The correct number was ${randomNumber}.';
+                endGame();
+            } else if (guess < randomNumber) {
+                messageElement.textContent = 'Should be larger! Try again.';
+            } else {
+                messageElement.textContent = 'Should be lower! Try again.';
+            }
         });
 
+
+        function endGame() {
+            document.getElementById('guess-button').disabled = true;
+            document.getElementById('reset-button').style.display = 'inline';
+        }
+
+        document.getElementById('reset-button').addEventListener('click', function () {
+            randomNumber = Math.floor(Math.random() * 10) + 1;
+            guessCount = 0;
+            document.getElementById('guess-button').disabled = false;
+            document.getElementById('reset-button').style.display = 'none';
+            document.getElementById('message').textContent = '';
+            document.getElementById('guess-input').value = '';
+        });
     </script>
 </body>
 
