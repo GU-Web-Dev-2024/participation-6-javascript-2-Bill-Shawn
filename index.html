@@ -32,6 +32,66 @@
 </head>
 
 <body>
+
+    <div class="container" id="div-container">
+        <h1>Welcome to the Number Guessing Game!</h1>
+
+        <hr>
+
+        <div>
+            <p>I'm thinking of a number between 1 and 10. You have 3 tries to guess it.</p>
+        </div>
+
+        <div>
+            <button id="start-button">Start Game</button>
+        </div>
+    </div>
+
+    <button id = "add-div-button">Add a Div</button>
+
+    <script>
+        // functionto create a new dev
+        function createDiv()
+        {
+            const newDiv = document.createElement("div");
+            newDiv.className = "style-div"
+            newDiv.textContent = "New Div";
+            // add event listener
+            newDiv.addEventListener("mouseover", () =>{
+                newDiv.style.backgroundColor = "yellow";
+            });
+            newDiv.addEventListener("mouseout", () =>{
+                newDiv.style.backgroundColor = "green";
+            });
+            function myCallbackFuncton()
+            {
+                alert("You clicked on the div");
+
+            }
+            document.getElementById("div-container").appendChild(newDiv);
+
+
+            // magic fun adding blocks
+            document.getElementById("add-div-button").addEventListener("click", createDiv);
+
+            for(let index = 0; index <10; index++)
+            {
+                createDiv();
+            }
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
     <div class="outside-border">
 
         <h1>Guess the Number (1-10)</h1>
